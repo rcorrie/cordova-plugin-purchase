@@ -62,6 +62,7 @@ store._validator = function(product, callback, isPrepared) {
             url: store.validator,
             method: 'POST',
             data: product,
+            headers: store.validatorHeaders || null,
             success: function(data) {
                 callback(data && data.ok, data.data);
             },

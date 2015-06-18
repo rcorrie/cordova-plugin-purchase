@@ -90,6 +90,11 @@ store.utils = {
             xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
             xhr.send(JSON.stringify(options.data));
         }
+        if (options.headers) {
+          for (var key in options.headers) {
+            xhr.setRequestHeader(key, options.headers[key]);
+          }
+        }
         else {
             xhr.send();
         }
