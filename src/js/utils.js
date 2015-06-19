@@ -86,16 +86,15 @@ store.utils = {
                 store.utils.callExternal('ajax.done', doneCb);
         };
         store.log.debug('ajax -> send request to ' + options.url);
-        if (options.data) {
-            xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-            xhr.send(JSON.stringify(options.data));
-        }
         if (options.headers) {
           for (var key in options.headers) {
             xhr.setRequestHeader(key, options.headers[key]);
           }
         }
-        else {
+        if (options.data) {
+            xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xhr.send(JSON.stringify(options.data));
+        } else {
             xhr.send();
         }
         return {
