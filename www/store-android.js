@@ -406,6 +406,7 @@ store.verbosity = 0;
                 url: store.validator,
                 method: "POST",
                 data: product,
+                headers: store.headers || null,
                 success: function(data) {
                     callback(data && data.ok, data.data);
                 },
@@ -707,6 +708,11 @@ store.verbosity = 0;
             if (options.data) {
                 xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
                 xhr.send(JSON.stringify(options.data));
+            }
+            if (options.headers) {
+                for (var key in options.headers) {
+                    xhr.setRequestHeader(key, options.headers[key]);
+                }
             } else {
                 xhr.send();
             }
